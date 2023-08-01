@@ -35,6 +35,4 @@ VOLUME ["/openim/openim-server/logs", "/openim/openim-server/config", "/openim/o
         "/openim/openim-chat/logs", "/openim/openim-chat/config", "/openim/openim-chat/scripts", "/openim/openim-chat/sdk", \
         "/openim/openkf/logs", "/openim/openkf/config", "/openim/openkf/scripts", "/openim/openkf/sdk"]
 
-CMD ["./docker_start_all.sh"]
-
 WORKDIR /openim
