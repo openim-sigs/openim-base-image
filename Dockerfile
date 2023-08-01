@@ -19,11 +19,8 @@ ENV CHAT_WORKDIR /openim/openim-chat
 ENV OPENKF_WORKDIR /openim/openkf
 
 RUN mkdir -p $SERVER_WORKDIR/logs $SERVER_WORKDIR/bin $SERVER_WORKDIR/scripts $SERVER_WORKDIR/config && \
-    chmod +x $SERVER_WORKDIR/bin/* $SERVER_WORKDIR/scripts/*
-RUN mkdir -p $CHAT_WORKDIR/logs $CHAT_WORKDIR/bin $CHAT_WORKDIR/scripts $CHAT_WORKDIR/config && \
-    chmod +x $CHAT_WORKDIR/bin/* $CHAT_WORKDIR/scripts/*
-RUN mkdir -p $OPENKF_WORKDIR/logs $OPENKF_WORKDIR/bin $OPENKF_WORKDIR/scripts $OPENKF_WORKDIR/config && \
-    chmod +x $OPENKF_WORKDIR/bin/* $OPENKF_WORKDIR/scripts/*
+    mkdir -p $CHAT_WORKDIR/logs $CHAT_WORKDIR/bin $CHAT_WORKDIR/scripts $CHAT_WORKDIR/config && \
+    mkdir -p $OPENKF_WORKDIR/logs $OPENKF_WORKDIR/bin $OPENKF_WORKDIR/scripts $OPENKF_WORKDIR/config
 
 ENV OPENIM_SERVER_CONFIG_NAME $SERVER_WORKDIR/config/config.yaml
 ENV OPENIM_SERVER_CMDDIR $SERVER_WORKDIR/scripts
