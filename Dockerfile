@@ -11,7 +11,7 @@ ARG GOPROXY=https://goproxy.cn,direct
 ENV GO111MODULE=$GO111MODULE
 ENV GOPROXY=$GOPROXY
 
-RUN echo "https://mirrors.aliyun.com/alpine/latest-stable/main" > /etc/apk/repositories && \
+RUN echo "https://mirrors.aliyun.com/alpine/v3.4/main" > /etc/apk/repositories && \
     apk --no-cache add tzdata ca-certificates bash
 
 ENV SERVER_WORKDIR /openim/openim-server
