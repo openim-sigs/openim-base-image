@@ -27,11 +27,11 @@ permissions:
   statuses: write
 
 env:
-  # Define openim-base-image variables here
+  # Define Open-IM-Server variables here
   OPEN_IM_SERVER_REMOTE_ORGANIZATION: openim-sigs
   REMOTE_REPOSITORY: cla
   OPEN_IM_SERVER_CLA_DOCUMENT: https://github.com/openim-sigs/cla/blob/main/README.md
-  OPEN_IM_SERVER_SIGNATURES_PATH: signatures/openim-base-image/cla.json
+  OPEN_IM_SERVER_SIGNATURES_PATH: signatures/${{ github.event.repository.name }}/cla.json
 
   OPEN_IM_SERVER_ALLOWLIST: kubbot,bot* 
 
