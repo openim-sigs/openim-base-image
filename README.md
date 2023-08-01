@@ -66,6 +66,12 @@ OPENIM_SERVER_CMDDIR=/openim/openim-server/scripts
 OPENIM_CHAT_CONFIG_NAME=/openim/openim-chat/config/config.yaml
 OPENIM_SERVER_CONFIG_NAME=/openim/openim-server/config/config.yaml
 OPENIM_OPENKF_CONFIG_NAME=/openim/openkf/config/config.yaml
+
+48aadaac962d:/openim# env | grep "WORKDIR"
+------------------------------------------------------------------
+CHAT_WORKDIR=/openim/openim-chat
+OPENKF_WORKDIR=/openim/openkf
+SERVER_WORKDIR=/openim/openim-server
 ```
 
 ## 🎯 build
