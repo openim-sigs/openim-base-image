@@ -55,6 +55,19 @@ FROM registry.cn-hangzhou.aliyuncs.com/openimsdk/openim-bash-image:latest
 
 After that, you can build your Docker image and run your OpenIM applications effortlessly!
 
+## OpenIM Env
+
+```bash
+c8e72f3e929d:/openim/openim-chat# env | grep "OPENIM"
+------------------------------------------------------------------
+OPENIM_CHAT_CMDDIR=/openim/openim-chat/scripts
+OPENIM_OPENKF_CMDDIR=/openim/openkf/scripts
+OPENIM_SERVER_CMDDIR=/openim/openim-server/scripts
+OPENIM_CHAT_CONFIG_NAME=/openim/openim-chat/config/config.yaml
+OPENIM_SERVER_CONFIG_NAME=/openim/openim-server/config/config.yaml
+OPENIM_OPENKF_CONFIG_NAME=/openim/openkf/config/config.yaml
+```
+
 ## 🎯 build
 ```
 root@PS2023EVRHNCXG:~/workspaces/openim/openim-sigs/openim-base-image# docker images | grep base
