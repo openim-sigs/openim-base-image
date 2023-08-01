@@ -12,6 +12,8 @@ This base image, available on GitHub Container Registry, Docker Hub, and Alibaba
   - [📚 Table of Contents](#-table-of-contents)
   - [🔭 Supported Architectures](#-supported-architectures)
   - [🛠 Usage](#-usage)
+  - [OpenIM Env](#openim-env)
+  - [🎯 build](#-build)
   - [🤝 Contribution](#-contribution)
   - [📄 License](#-license)
   - [🌟 Acknowledgments](#-acknowledgments)
@@ -60,11 +62,17 @@ After that, you can build your Docker image and run your OpenIM applications eff
 ```bash
 c8e72f3e929d:/openim/openim-chat# env | grep "OPENIM"
 ------------------------------------------------------------------
+OPENIM_OPENKF_BINDIR=/openim/openkf/bin
 OPENIM_CHAT_CMDDIR=/openim/openim-chat/scripts
+OPENIM_CHAT_CONFIG_NAME=/openim/openim-chat/config/config.yaml
+OPENIM_SERVER_LOGDIR=/openim/openim-server/logs
+OPENIM_SERVER_CONFIG_NAME=/openim/openim-server/config/config.yaml
 OPENIM_OPENKF_CMDDIR=/openim/openkf/scripts
 OPENIM_SERVER_CMDDIR=/openim/openim-server/scripts
-OPENIM_CHAT_CONFIG_NAME=/openim/openim-chat/config/config.yaml
-OPENIM_SERVER_CONFIG_NAME=/openim/openim-server/config/config.yaml
+OPENIM_CHAT_LOGDIR=/openim/openim-chat/logs
+OPENIM_OPENKF_LOGDIR=/openim/openkf/logs
+OPENIM_CHAT_BINDIR=/openim/openim-chat/bin
+OPENIM_SERVER_BINDIR=/openim/openim-server/bin
 OPENIM_OPENKF_CONFIG_NAME=/openim/openkf/config/config.yaml
 
 48aadaac962d:/openim# env | grep "WORKDIR"
