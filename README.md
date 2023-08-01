@@ -31,26 +31,25 @@ The OpenIM base image supports a wide range of Linux architectures including:
 
 ## 🛠 Usage
 
+About OpenIM Images Details: [https://github.com/OpenIMSDK/Open-IM-Server/blob/main/docs/conversions/images.md](https://github.com/OpenIMSDK/Open-IM-Server/blob/main/docs/conversions/images.md)
+
 To use the OpenIM base image in your Dockerfile, simply specify it in the `FROM` directive. Here are the image paths for GitHub, Docker Hub, and Alibaba Cloud:
 
 **GitHub Container Registry:**
 
-```
-DockerfileCopy code
+```bash
 FROM ghcr.io/openim-sigs/openim-bash-image:main
 ```
 
 **Docker Hub:**
 
-```
-DockerfileCopy code
+```bash
 FROM openim/openim-bash-image:latest
 ```
 
 **Alibaba Cloud:**
 
-```
-DockerfileCopy code
+```bash
 FROM registry.cn-hangzhou.aliyuncs.com/openimsdk/openim-bash-image:latest
 ```
 
