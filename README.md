@@ -56,6 +56,35 @@ FROM registry.cn-hangzhou.aliyuncs.com/openimsdk/openim-bash-image:latest
 
 After that, you can build your Docker image and run your OpenIM applications effortlessly!
 
+## 🎯 build
+```
+root@PS2023EVRHNCXG:~/workspaces/openim/openim-sigs/openim-base-image# docker images | grep base
+openim-base-image          latest            2ea693677ba8   29 minutes ago      11MB
+root@PS2023EVRHNCXG:~/workspaces/openim/openim-sigs/openim-base-image# docker run -it 2ea693677ba8 bash
+264f4f21bb7f:/openim# pwd
+/openim
+264f4f21bb7f:/openim# tree
+.
+├── openim-chat
+│   ├── bin
+│   ├── config
+│   ├── logs
+│   ├── scripts
+│   └── sdk
+├── openim-server
+│   ├── bin
+│   ├── config
+│   ├── logs
+│   ├── scripts
+│   └── sdk
+└── openkf
+    ├── bin
+    ├── config
+    ├── logs
+    ├── scripts
+    └── sdk
+```
+
 ## 🤝 Contribution
 
 Contributions to the OpenIM base image are welcomed and greatly appreciated. Please read our [contribution guide](./CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
