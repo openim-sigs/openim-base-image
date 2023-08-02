@@ -64,6 +64,6 @@ VOLUME ["/openim", \
         "/openim/openim-chat/logs", "/openim/openim-chat/config", "/openim/openim-chat/scripts", \
         "/openim/openkf/logs", "/openim/openkf/config", "/openim/openkf/scripts"]
 
-ENTRYPOINT ["./source.sh"]
+ENTRYPOINT ["/openim/source.sh"]
 
 WORKDIR /openim
