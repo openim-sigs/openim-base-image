@@ -24,7 +24,7 @@ ENV OPENKF_WORKDIR /openim/openkf
 ENV OPENIM_SERVER_CONFIG_NAME $SERVER_WORKDIR/config/config.yaml
 ENV OPENIM_SERVER_CMDDIR $SERVER_WORKDIR/scripts
 ENV OPENIM_SERVER_LOGDIR $SERVER_WORKDIR/logs
-ENV OPENIM_SERVER_BINDIR $SERVER_WORKDIR/_output
+ENV OPENIM_SERVER_BINDIR $SERVER_WORKDIR/_output/bin
 
 ENV OPENIM_CHAT_CONFIG_NAME $CHAT_WORKDIR/config/config.yaml
 ENV OPENIM_CHAT_CMDDIR $CHAT_WORKDIR/scripts
@@ -46,13 +46,14 @@ RUN echo "openim-sigs" > /etc/hostname
 COPY ./README.md ./README.md
 COPY ./LICENSE ./LICENSE
 
-COPY get_os.sh get_arch.sh /openim/
+COPY get_os.sh get_arch.sh source.sh /openim/
 
-RUN /openim/get_os.sh > /tmp/os && source /openim/get_os.sh
-RUN /openim/get_arch.sh > /tmp/arch && source /openim/get_arch.sh
-
-RUN echo "export OS=$(cat /tmp/os)" >> /etc/profile
-RUN echo "export ARCH=$(cat /tmp/arch)" >> /etc/profile
+RUN /openim/get_os.sh > /tmp/os && \
+    source /openim/get_os.sh && \
+    /openim/get_arch.sh > /tmp/arch && \
+    source /openim/get_arch.sh && \
+    echo "export OS=$(cat /tmp/os)" >> /etc/profile && \
+    echo "export ARCH=$(cat /tmp/arch)" >> /etc/profile
 
 ENV OS $OS
 ENV ARCH $ARCH
@@ -62,5 +63,7 @@ VOLUME ["/openim", \
         "/openim/openim-server/logs", "/openim/openim-server/config", "/openim/openim-server/scripts", \
         "/openim/openim-chat/logs", "/openim/openim-chat/config", "/openim/openim-chat/scripts", \
         "/openim/openkf/logs", "/openim/openkf/config", "/openim/openkf/scripts"]
+
+ENTRYPOINT ["./source.sh"]
 
 WORKDIR /openim
