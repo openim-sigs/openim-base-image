@@ -44,8 +44,9 @@ ENV OPENIM_OPENKF_LOGDIR $OPENKF_WORKDIR/logs
 ENV OPENIM_OPENKF_BINDIR $OPENKF_WORKDIR/bin
 
 # Set directory to map logs, config files, scripts, and SDK
-VOLUME ["/openim/openim-server/logs", "/openim/openim-server/config", "/openim/openim-server/scripts", "/openim/openim-server/sdk", \
-        "/openim/openim-chat/logs", "/openim/openim-chat/config", "/openim/openim-chat/scripts", "/openim/openim-chat/sdk", \
-        "/openim/openkf/logs", "/openim/openkf/config", "/openim/openkf/scripts", "/openim/openkf/sdk"]
+VOLUME ["/openim", \
+        "/openim/openim-server/logs", "/openim/openim-server/config", "/openim/openim-server/scripts", \
+        "/openim/openim-chat/logs", "/openim/openim-chat/config", "/openim/openim-chat/scripts", \
+        "/openim/openkf/logs", "/openim/openkf/config", "/openim/openkf/scripts"]
 
 WORKDIR /openim
