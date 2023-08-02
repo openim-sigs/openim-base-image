@@ -1,6 +1,8 @@
 # Production Stage
 FROM alpine
 
+LABEL maintainer="3293172751nss@gmail.com"
+
 LABEL org.opencontainers.image.source=https://github.com/openim-sigs/openim-base-image
 LABEL org.opencontainers.image.description="OpenIM Sigs image"
 LABEL org.opencontainers.image.licenses="MIT"
@@ -14,15 +16,6 @@ ENV GOPROXY=$GOPROXY
 WORKDIR /openim
 
 RUN apk --no-cache add tzdata ca-certificates bash
-
-RUN mkdir -p $SERVER_WORKDIR/logs $SERVER_WORKDIR/bin $SERVER_WORKDIR/scripts $SERVER_WORKDIR/config && \
-    mkdir -p $CHAT_WORKDIR/logs $CHAT_WORKDIR/bin $CHAT_WORKDIR/scripts $CHAT_WORKDIR/config && \
-    mkdir -p $OPENKF_WORKDIR/logs $OPENKF_WORKDIR/bin $OPENKF_WORKDIR/scripts $OPENKF_WORKDIR/config
-
-RUN echo "openim-sigs" > /etc/hostname
-
-COPY ./README.md ./README.md
-COPY ./LICENSE ./LICENSE
 
 ENV SERVER_WORKDIR /openim/openim-server
 ENV CHAT_WORKDIR /openim/openim-chat
@@ -42,6 +35,27 @@ ENV OPENIM_OPENKF_CONFIG_NAME $OPENKF_WORKDIR/config/config.yaml
 ENV OPENIM_OPENKF_CMDDIR $OPENKF_WORKDIR/scripts
 ENV OPENIM_OPENKF_LOGDIR $OPENKF_WORKDIR/logs
 ENV OPENIM_OPENKF_BINDIR $OPENKF_WORKDIR/bin
+
+RUN mkdir -p $SERVER_WORKDIR/logs $SERVER_WORKDIR/bin $SERVER_WORKDIR/scripts $SERVER_WORKDIR/config && \
+    mkdir -p $CHAT_WORKDIR/logs $CHAT_WORKDIR/bin $CHAT_WORKDIR/scripts $CHAT_WORKDIR/config && \
+    mkdir -p $OPENKF_WORKDIR/logs $OPENKF_WORKDIR/bin $OPENKF_WORKDIR/scripts $OPENKF_WORKDIR/config && \
+    mkdir -p /openim/tools
+
+RUN echo "openim-sigs" > /etc/hostname
+
+COPY ./README.md ./README.md
+COPY ./LICENSE ./LICENSE
+
+COPY get_os.sh get_arch.sh /openim/
+
+RUN /openim/get_os.sh > /tmp/os && source /openim/get_os.sh
+RUN /openim/get_arch.sh > /tmp/arch && source /openim/get_arch.sh
+
+RUN echo "export OS=$(cat /tmp/os)" >> /etc/profile
+RUN echo "export ARCH=$(cat /tmp/arch)" >> /etc/profile
+
+ENV OS $OS
+ENV ARCH $ARCH
 
 # Set directory to map logs, config files, scripts, and SDK
 VOLUME ["/openim", \
