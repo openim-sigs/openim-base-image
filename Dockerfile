@@ -18,7 +18,11 @@ ENV GO111MODULE=$GO111MODULE \
 
 WORKDIR /openim
 
-RUN apk --no-cache add tzdata ca-certificates bash && \
+RUN apk --no-cache add tzdata ca-certificates bash tzdata && \
+    apk add --no-cache --virtual build-dependencies && \ 
+    rm -rf /var/cache/apk/* &&\
+    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo "Asia/Shanghai" > /etc/timezone && \
     echo "openim-sigs" > /etc/hostname && \
     for dir in "$SERVER_WORKDIR" "$CHAT_WORKDIR" "$OPENKF_WORKDIR"; do \
       for subdir in logs bin scripts config; do \
