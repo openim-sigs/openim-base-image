@@ -15,6 +15,7 @@ ENV GO111MODULE=$GO111MODULE \
     SERVER_WORKDIR=/openim/openim-server \
     CHAT_WORKDIR=/openim/openim-chat \
     OPENKF_WORKDIR=/openim/openkf
+
 ENV OPENIM_SERVER_CONFIG_NAME=$SERVER_WORKDIR/config/config.yaml \
     OPENIM_SERVER_CMDDIR=$SERVER_WORKDIR/scripts \
     OPENIM_SERVER_LOGDIR=$SERVER_WORKDIR/logs \
@@ -46,10 +47,10 @@ RUN apk --no-cache add tzdata ca-certificates bash tzdata && \
     mkdir -p /openim/tools
 
 COPY ./README.md ./LICENSE ./
-COPY get_os.sh get_arch.sh source.sh /openim/
+COPY get_os.sh get_arch.sh source.sh /openim/tools/
 
-RUN /openim/get_os.sh > /tmp/os && \
-    /openim/get_arch.sh > /tmp/arch && \
+RUN /openim/tools/get_os.sh > /tmp/os && \
+    /openim/tools/get_arch.sh > /tmp/arch && \
     echo "export OS=$(cat /tmp/os)" >> /etc/profile && \
     echo "export ARCH=$(cat /tmp/arch)" >> /etc/profile && \
     rm /tmp/os /tmp/arch
