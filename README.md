@@ -59,27 +59,43 @@ After that, you can build your Docker image and run your OpenIM applications eff
 
 ## OpenIM Env
 
+**WORKDIR**
 ```bash
-c8e72f3e929d:/openim/openim-chat# env | grep "OPENIM"
-------------------------------------------------------------------
-OPENIM_OPENKF_BINDIR=/openim/openkf/bin
-OPENIM_CHAT_CMDDIR=/openim/openim-chat/scripts
-OPENIM_CHAT_CONFIG_NAME=/openim/openim-chat/config/config.yaml
-OPENIM_SERVER_LOGDIR=/openim/openim-server/logs
-OPENIM_SERVER_CONFIG_NAME=/openim/openim-server/config/config.yaml
-OPENIM_OPENKF_CMDDIR=/openim/openkf/scripts
-OPENIM_SERVER_CMDDIR=/openim/openim-server/scripts
-OPENIM_CHAT_LOGDIR=/openim/openim-chat/logs
-OPENIM_OPENKF_LOGDIR=/openim/openkf/logs
-OPENIM_CHAT_BINDIR=/openim/openim-chat/bin
-OPENIM_SERVER_BINDIR=/openim/openim-server/bin
-OPENIM_OPENKF_CONFIG_NAME=/openim/openkf/config/config.yaml
-
 48aadaac962d:/openim# env | grep "WORKDIR"
 ------------------------------------------------------------------
 CHAT_WORKDIR=/openim/openim-chat
 OPENKF_WORKDIR=/openim/openkf
 SERVER_WORKDIR=/openim/openim-server
+```
+
+**OPENIM-SERVER**
+```bash
+4dd91a700d3f:/openim# env | grep OPENIM_SERVER
+------------------------------------------------------------------
+OPENIM_SERVER_LOGDIR=/openim/openim-server/logs
+OPENIM_SERVER_CONFIG_NAME=/openim/openim-server/config/config.yaml
+OPENIM_SERVER_CMDDIR=/openim/openim-server/scripts
+OPENIM_SERVER_BINDIR=/openim/openim-server/_output/bin
+```
+
+**OPENIM-CHAT**
+```bash
+4dd91a700d3f:/openim# env | grep OPENIM_CHAT
+------------------------------------------------------------------
+OPENIM_CHAT_CMDDIR=/openim/openim-chat/scripts
+OPENIM_CHAT_CONFIG_NAME=/openim/openim-chat/config/config.yaml
+OPENIM_CHAT_LOGDIR=/openim/openim-chat/logs
+OPENIM_CHAT_BINDIR=/openim/openim-chat/bin
+```
+
+**OPENKF**
+```bash
+4dd91a700d3f:/openim# env | grep OPENIM_OPENKF
+------------------------------------------------------------------
+OPENIM_OPENKF_BINDIR=/openim/openkf/bin
+OPENIM_OPENKF_CMDDIR=/openim/openkf/scripts
+OPENIM_OPENKF_LOGDIR=/openim/openkf/logs
+OPENIM_OPENKF_CONFIG_NAME=/openim/openkf/config/config.yaml
 ```
 
 ## 🎯 build
@@ -89,26 +105,29 @@ openim-base-image          latest            2ea693677ba8   29 minutes ago      
 root@PS2023EVRHNCXG:~/workspaces/openim/openim-sigs/openim-base-image# docker run -it 2ea693677ba8 bash
 264f4f21bb7f:/openim# pwd
 /openim
-264f4f21bb7f:/openim# tree
+4dd91a700d3f:/openim# tree
 .
+├── LICENSE
+├── README.md
+├── get_arch.sh
+├── get_os.sh
 ├── openim-chat
 │   ├── bin
 │   ├── config
 │   ├── logs
-│   ├── scripts
-│   └── sdk
+│   └── scripts
 ├── openim-server
 │   ├── bin
 │   ├── config
 │   ├── logs
-│   ├── scripts
-│   └── sdk
-└── openkf
-    ├── bin
-    ├── config
-    ├── logs
-    ├── scripts
-    └── sdk
+│   └── scripts
+├── openkf
+│   ├── bin
+│   ├── config
+│   ├── logs
+│   └── scripts
+├── source.sh
+└── tools
 ```
 
 ## 🤝 Contribution
