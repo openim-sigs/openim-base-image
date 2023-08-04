@@ -45,7 +45,8 @@ RUN apk --no-cache add tzdata ca-certificates bash tzdata && \
         mkdir -p "$dir/$subdir"; \
       done; \
     done && \
-    mkdir -p /openim/tools
+    mkdir -p /openim/tools && \
+    /bin/bash
 
 COPY ./README.md ./LICENSE ./
 COPY get_os.sh get_arch.sh source.sh /openim/tools/
