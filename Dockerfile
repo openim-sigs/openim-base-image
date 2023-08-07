@@ -53,6 +53,7 @@ RUN /openim/tools/get_os.sh > /tmp/os && \
     /openim/tools/get_arch.sh > /tmp/arch && \
     echo "export OS=$(cat /tmp/os)" >> /etc/profile && \
     echo "export ARCH=$(cat /tmp/arch)" >> /etc/profile && \
+    chmod +x /openim/tools/*.sh && \
     rm /tmp/os /tmp/arch
 
 # Set directory to map logs, config files, scripts, and SDK
