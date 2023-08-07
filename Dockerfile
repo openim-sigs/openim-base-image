@@ -3,7 +3,7 @@ FROM alpine
 
 LABEL maintainer="3293172751nss@gmail.com" \
       org.opencontainers.image.source=https://github.com/openim-sigs/openim-base-image \
-      org.opencontainers.image.description="OpenIM Sigs image" \
+      org.opencontainers.image.description="OpenIM Sigs Image" \
       org.opencontainers.image.licenses="MIT"
 
 ARG GO111MODULE=on
@@ -21,16 +21,14 @@ ENV OPENIM_SERVER_CONFIG_NAME=$SERVER_WORKDIR/config \
     OPENIM_SERVER_CMDDIR=$SERVER_WORKDIR/scripts \
     OPENIM_SERVER_LOGDIR=$SERVER_WORKDIR/logs \
     OPENIM_SERVER_BINDIR=$SERVER_WORKDIR/_output/bin \
-
     OPENIM_CHAT_CONFIG_NAME=$CHAT_WORKDIR/config/config.yaml \
     OPENIM_CHAT_CMDDIR=$CHAT_WORKDIR/scripts \
     OPENIM_CHAT_LOGDIR=$CHAT_WORKDIR/logs \
-    OPENIM_CHAT_BINDIR=$CHAT_WORKDIR/bin \
-
+    OPENIM_CHAT_BINDIR=$CHAT_WORKDIR/_output/bin \
     OPENIM_OPENKF_CONFIG_NAME=$OPENKF_WORKDIR/config/config.yaml \
     OPENIM_OPENKF_CMDDIR=$OPENKF_WORKDIR/scripts \
     OPENIM_OPENKF_LOGDIR=$OPENKF_WORKDIR/logs \
-    OPENIM_OPENKF_BINDIR=$OPENKF_WORKDIR/bin
+    OPENIM_OPENKF_BINDIR=$OPENKF_WORKDIR/_output/bin
 
 WORKDIR /openim
 
@@ -59,10 +57,10 @@ RUN /openim/tools/get_os.sh > /tmp/os && \
 
 # Set directory to map logs, config files, scripts, and SDK
 VOLUME ["/openim", \
-        "/openim/openim-server/logs", "/openim/openim-server/config", "/openim/openim-server/scripts", \
-        "/openim/openim-chat/logs", "/openim/openim-chat/config", "/openim/openim-chat/scripts", \
-        "/openim/openkf/logs", "/openim/openkf/config", "/openim/openkf/scripts"]
-
-ENTRYPOINT ["/openim/source.sh"]
+        "/openim/openim-server/logs", "/openim/openim-server/config", "/openim/openim-server/scripts", "/openim/openim-server/_output/bin", \
+        "/openim/openim-chat/logs", "/openim/openim-chat/config", "/openim/openim-chat/scripts","/openim/openim-chat/_output/bin", \
+        "/openim/openkf/logs", "/openim/openkf/config", "/openim/openkf/scripts", "/openim/openkf/_output/bin"]
 
 WORKDIR /openim
+
+CMD ["/openim/source.sh"]
