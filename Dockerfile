@@ -63,4 +63,4 @@ VOLUME ["/openim", \
 
 WORKDIR /openim
 
-CMD ["/openim/source.sh"]
+ENTRYPOINT ["/openim/tools/source.sh"]
