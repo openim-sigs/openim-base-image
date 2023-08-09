@@ -1,9 +1,3 @@
-#!/usr/bin/env bash
-
-set -o errexit
-set -o nounset
-set -o pipefail
-
 ARCH=$(uname -m | tr '[:upper:]' '[:lower:]')
 
 case "$ARCH" in

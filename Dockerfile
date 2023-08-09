@@ -32,7 +32,7 @@ ENV OPENIM_SERVER_CONFIG_NAME=$SERVER_WORKDIR/config \
 
 WORKDIR /openim
 
-RUN apk --no-cache add tzdata ca-certificates bash tzdata && \
+RUN apk --no-cache add tzdata ca-certificates bash && \
     apk add --no-cache --virtual build-dependencies && \ 
     rm -rf /var/cache/apk/* &&\
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
@@ -43,18 +43,18 @@ RUN apk --no-cache add tzdata ca-certificates bash tzdata && \
         mkdir -p "$dir/$subdir"; \
       done; \
     done && \
-    mkdir -p /openim/tools && \
-    /bin/bash
+    mkdir -p /openim/tools
 
 COPY ./README.md ./LICENSE ./
 COPY get_os.sh get_arch.sh source.sh /openim/tools/
 
-RUN /openim/tools/get_os.sh > /tmp/os && \
-    /openim/tools/get_arch.sh > /tmp/arch && \
-    echo "export OS=$(cat /tmp/os)" >> /etc/profile && \
-    echo "export ARCH=$(cat /tmp/arch)" >> /etc/profile && \
+RUN /openim/tools/get_os.sh > ~/os && \
+    /openim/tools/get_arch.sh > ~/arch && \
+    echo "export OS=$(cat ~/os)" >> /etc/profile && \
+    echo "export ARCH=$(cat ~/arch)" >> /etc/profile && \
     chmod +x /openim/tools/*.sh && \
-    rm /tmp/os /tmp/arch
+    cp /openim/tools/get_os.sh /bin/get_os && \
+    cp /openim/tools/get_arch.sh /bin/get_arch
 
 # Set directory to map logs, config files, scripts, and SDK
 VOLUME ["/openim", \
@@ -64,4 +64,7 @@ VOLUME ["/openim", \
 
 WORKDIR /openim
 
-ENTRYPOINT ["/openim/tools/source.sh"]
+RUN ["/bin/bash"]
+
+ONBUILD RUN OS=$(get_os) && \
+            ARCH=$(get_arch)
