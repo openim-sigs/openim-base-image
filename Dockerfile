@@ -33,20 +33,17 @@ ENV OPENIM_SERVER_CONFIG_NAME=$SERVER_WORKDIR/config \
 WORKDIR /openim
 
 RUN apk --no-cache add tzdata ca-certificates bash && \
-    apk add --no-cache --virtual build-dependencies && \ 
-    rm -rf /var/cache/apk/* &&\
+    rm -rf /var/cache/apk/* && \
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "Asia/Shanghai" > /etc/timezone && \
     echo "openim-sigs" > /etc/hostname && \
-    for dir in "$SERVER_WORKDIR" "$CHAT_WORKDIR" "$OPENKF_WORKDIR"; do \
-      for subdir in logs bin scripts config; do \
-        mkdir -p "$dir/$subdir"; \
-      done; \
-    done && \
+    mkdir -p "$SERVER_WORKDIR/logs" "$SERVER_WORKDIR/bin" "$SERVER_WORKDIR/scripts" "$SERVER_WORKDIR/config" && \
+    mkdir -p "$CHAT_WORKDIR/logs" "$CHAT_WORKDIR/bin" "$CHAT_WORKDIR/scripts" "$CHAT_WORKDIR/config" && \
+    mkdir -p "$OPENKF_WORKDIR/logs" "$OPENKF_WORKDIR/bin" "$OPENKF_WORKDIR/scripts" "$OPENKF_WORKDIR/config" && \
     mkdir -p /openim/tools
 
-COPY ./README.md ./LICENSE ./
-COPY get_os.sh get_arch.sh source.sh /openim/tools/
+COPY --chown=root:root ./README.md ./LICENSE ./
+COPY --chown=root:root get_os.sh get_arch.sh source.sh /openim/tools/
 
 RUN /openim/tools/get_os.sh > ~/os && \
     /openim/tools/get_arch.sh > ~/arch && \
@@ -55,16 +52,6 @@ RUN /openim/tools/get_os.sh > ~/os && \
     chmod +x /openim/tools/*.sh && \
     cp /openim/tools/get_os.sh /bin/get_os && \
     cp /openim/tools/get_arch.sh /bin/get_arch
-
-# Set directory to map logs, config files, scripts, and SDK
-VOLUME ["/openim", \
-        "/openim/openim-server/logs", "/openim/openim-server/config", "/openim/openim-server/scripts", "/openim/openim-server/_output/bin", \
-        "/openim/openim-chat/logs", "/openim/openim-chat/config", "/openim/openim-chat/scripts","/openim/openim-chat/_output/bin", \
-        "/openim/openkf/logs", "/openim/openkf/config", "/openim/openkf/scripts", "/openim/openkf/_output/bin"]
-
-WORKDIR /openim
-
-RUN ["/bin/bash"]
 
 ONBUILD RUN OS=$(get_os) && \
             ARCH=$(get_arch)
