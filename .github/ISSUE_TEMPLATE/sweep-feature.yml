@@ -9,3 +9,7 @@ body:
       label: Details
       description: More details for Sweep
       placeholder: The new endpoint should use the ... class from ... file because it contains ... logic
+if user_is_ai:
+  skip_actions = True
+if user_is_ai:
+  skip_actions = True
