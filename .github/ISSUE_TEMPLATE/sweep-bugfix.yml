@@ -9,3 +9,7 @@ body:
       label: Details
       description: More details about the bug
       placeholder: The bug might be in ... file
+if user_is_ai:
+  skip_actions = True
+if user_is_ai:
+  skip_actions = True
