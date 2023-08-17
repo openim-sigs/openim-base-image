@@ -1,5 +1,5 @@
 # Production Stage
-FROM alpine
+FROM ubuntu:latest
 
 LABEL maintainer="3293172751nss@gmail.com" \
       org.opencontainers.image.source=https://github.com/openim-sigs/openim-base-image \
@@ -32,11 +32,11 @@ ENV OPENIM_SERVER_CONFIG_NAME=$SERVER_WORKDIR/config \
 
 WORKDIR /openim
 
-RUN apk --no-cache add tzdata ca-certificates ncurses bash && \
-    apk add --no-cache --virtual build-dependencies && \ 
-    rm -rf /var/cache/apk/* &&\
-    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-    echo "Asia/Shanghai" > /etc/timezone && \
+# Install required packages
+RUN apt-get update && \
+    apt-get install -y tzdata ca-certificates && \
+    ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    dpkg-reconfigure --frontend noninteractive tzdata && \
     echo "openim-sigs" > /etc/hostname && \
     for dir in "$SERVER_WORKDIR" "$CHAT_WORKDIR" "$OPENKF_WORKDIR"; do \
       for subdir in logs _output/bin scripts config; do \
@@ -53,8 +53,8 @@ RUN /openim/tools/get_os.sh > ~/os && \
     echo "export OS=$(cat ~/os)" >> /etc/profile && \
     echo "export ARCH=$(cat ~/arch)" >> /etc/profile && \
     chmod +x /openim/tools/*.sh && \
-    cp /openim/tools/get_os.sh /bin/get_os && \
-    cp /openim/tools/get_arch.sh /bin/get_arch
+    cp /openim/tools/get_os.sh /usr/local/bin/get_os && \
+    cp /openim/tools/get_arch.sh /usr/local/bin/get_arch
 
 # Set directory to map logs, config files, scripts, and SDK
 VOLUME ["/openim", \
@@ -63,8 +63,6 @@ VOLUME ["/openim", \
         "/openim/openkf/logs", "/openim/openkf/config", "/openim/openkf/scripts", "/openim/openkf/_output/bin"]
 
 WORKDIR /openim
-
-# RUN ["/bin/bash"]
 
 ONBUILD RUN OS=$(get_os) && \
             ARCH=$(get_arch)
