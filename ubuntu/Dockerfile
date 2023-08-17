@@ -1,5 +1,5 @@
 # Production Stage
-FROM ubuntu:latest
+FROM ubuntu:22.04
 
 LABEL maintainer="3293172751nss@gmail.com" \
       org.opencontainers.image.source=https://github.com/openim-sigs/openim-base-image \
