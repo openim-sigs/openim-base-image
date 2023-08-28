@@ -34,7 +34,7 @@ WORKDIR /openim
 
 # Install required packages
 RUN apt-get update && \
-    apt-get install -y tzdata ca-certificates iproute2 lsof && \
+    apt-get install -y tzdata ca-certificates iproute2 lsof psmisc  && \
     ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
     echo "openim-sigs" > /etc/hostname && \
