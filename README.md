@@ -10,13 +10,22 @@ This base image, available on GitHub Container Registry, Docker Hub, and Alibaba
 
 - [OpenIM Base Image](#openim-base-image)
   - [📚 Table of Contents](#-table-of-contents)
+  - [✨ Support for multiple OS](#-suport-for-multiple-os)
   - [🔭 Supported Architectures](#-supported-architectures)
-  - [🛠 Usage](#-usage)
-  - [OpenIM Env](#openim-env)
+  - [🛠  Usage](#-usage)
+  - [🤖 OpenIM Env](#openim-env)
   - [🎯 build](#-build)
   - [🤝 Contribution](#-contribution)
   - [📄 License](#-license)
   - [🌟 Acknowledgments](#-acknowledgments)
+
+
+## ✨ Support for multiple OS
+
+Support Ubuntu rootfs and more lightweight Alpine rootfs
+
++ [openim-bash-image](https://github.com/openim-sigs/openim-base-image/pkgs/container/openim-bash-image)
++ [openim-ubuntu-image](https://github.com/openim-sigs/openim-base-image/pkgs/container/openim-ubuntu-image)
 
 
 ## 🔭 Supported Architectures
@@ -57,7 +66,7 @@ FROM registry.cn-hangzhou.aliyuncs.com/openimsdk/openim-bash-image:latest
 
 After that, you can build your Docker image and run your OpenIM applications effortlessly!
 
-## OpenIM Env
+## 🤖 OpenIM Env
 
 **WORKDIR**
 ```bash
