@@ -64,7 +64,7 @@ VOLUME ["/openim", \
 
 WORKDIR /openim
 
-# RUN ["/bin/bash"]
+RUN ["/bin/bash"]
 
 ONBUILD RUN OS=$(get_os) && \
             ARCH=$(get_arch)
