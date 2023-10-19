@@ -35,26 +35,25 @@ WORKDIR /openim
 RUN apk --no-cache add tzdata ca-certificates ncurses bash libdrm && \
     apk add --no-cache --virtual build-dependencies && \ 
     rm -rf /var/cache/apk/* &&\
-    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-    echo "Asia/Shanghai" > /etc/timezone && \ 
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo "openim-sigs" > /etc/hostname && \
     for dir in "$SERVER_WORKDIR" "$CHAT_WORKDIR" "$OPENKF_WORKDIR"; do \
       for subdir in logs _output/bin scripts config; do \
         mkdir -p "$dir/$subdir"; \
       done; \
-    done && \    
+    done && \
     mkdir -p /openim/tools
 
 COPY ./README.md ./LICENSE ./
-# COPY get_os.sh get_arch.sh source.sh /openim/tools/
+COPY get_os.sh get_arch.sh source.sh /openim/tools/
 
-# RUN /openim/tools/get_os.sh > ~/os && \
-#     /openim/tools/get_arch.sh > ~/arch && \
-#     echo "export OS=$(cat ~/os)" >> /etc/profile && \
-#     echo "export ARCH=$(cat ~/arch)" >> /etc/profile && \
-#     chmod +x /openim/tools/*.sh && \
-#     cp /openim/tools/get_os.sh /bin/get_os && \
-#     cp /openim/tools/get_arch.sh /bin/get_arch
+RUN /openim/tools/get_os.sh > ~/os && \
+    /openim/tools/get_arch.sh > ~/arch && \
+    echo "export OS=$(cat ~/os)" >> /etc/profile && \
+    echo "export ARCH=$(cat ~/arch)" >> /etc/profile && \
+    chmod +x /openim/tools/*.sh && \
+    cp /openim/tools/get_os.sh /bin/get_os && \
+    cp /openim/tools/get_arch.sh /bin/get_arch
 
 # # Set directory to map logs, config files, scripts, and SDK
 # VOLUME ["/openim", \
