@@ -38,12 +38,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-# ghcr.io/openim-sigs/openim-bash-image:latest
+# ghcr.io/openim-sigs/openim-base-image:latest
       - name: Extract metadata (tags, labels) for Docker
         id: meta3
         uses: docker/metadata-action@v4.6.0
         with:
-          images: ghcr.io/openim-sigs/openim-bash-image
+          images: ghcr.io/openim-sigs/openim-base-image
 
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
@@ -71,12 +71,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-# docker.io/openim/openim-bash-image:latest
+# docker.io/openim/openim-base-image:latest
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v4.6.0
         with:
-          images: openim/openim-bash-image
+          images: openim/openim-base-image
           # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule
@@ -112,12 +112,12 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-# registry.cn-hangzhou.aliyuncs.com/openimsdk/openim-bash-image:latest
+# registry.cn-hangzhou.aliyuncs.com/openimsdk/openim-base-image:latest
       - name: Extract metadata (tags, labels) for Docker
         id: meta2
         uses: docker/metadata-action@v4.6.0
         with:
-          images: registry.cn-hangzhou.aliyuncs.com/openimsdk/openim-bash-image
+          images: registry.cn-hangzhou.aliyuncs.com/openimsdk/openim-base-image
 
       - name: Log in to AliYun Docker Hub
         uses: docker/login-action@v2
