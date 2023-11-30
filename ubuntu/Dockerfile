@@ -1,7 +1,7 @@
 # Production Stage
 FROM ubuntu:22.04
 
-LABEL maintainer="3293172751nss@gmail.com" \
+LABEL maintainer="cubxxw@openim.io \
       org.opencontainers.image.source=https://github.com/openim-sigs/openim-base-image \
       org.opencontainers.image.description="OpenIM Sigs Image" \
       org.opencontainers.image.licenses="MIT"
@@ -58,7 +58,7 @@ RUN /openim/tools/get_os.sh > ~/os && \
 
 # Set directory to map logs, config files, scripts, and SDK
 VOLUME ["/openim", \
-        "/openim/openim-server/logs", "/openim/openim-server/config", "/openim/openim-server/scripts", "/openim/openim-server/_output/logs", \
+        "/openim/openim-server/logs", "/openim/openim-server/config", "/openim/openim-server/scripts", "/openim/openim-server/deploymentes", "/openim/openim-server/_output/logs", \
         "/openim/openim-chat/logs", "/openim/openim-chat/config", "/openim/openim-chat/scripts","/openim/openim-chat/_output/logs", \
         "/openim/openkf/logs", "/openim/openkf/config", "/openim/openkf/scripts", "/openim/openkf/_output/bin"]
 
