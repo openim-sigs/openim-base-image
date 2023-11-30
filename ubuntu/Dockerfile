@@ -39,7 +39,7 @@ RUN apt-get update && \
     dpkg-reconfigure --frontend noninteractive tzdata && \
     echo "openim-sigs" > /etc/hostname && \
     for dir in "$SERVER_WORKDIR" "$CHAT_WORKDIR" "$OPENKF_WORKDIR"; do \
-      for subdir in logs _output/bin scripts config; do \
+      for subdir in logs _output/bin scripts deployments config; do \
         mkdir -p "$dir/$subdir"; \
       done; \
     done && \
