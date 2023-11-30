@@ -1,7 +1,7 @@
 # Production Stage
 FROM ubuntu:22.04
 
-LABEL maintainer="cubxxw@openim.io \
+LABEL maintainer="cubxxw@openim.io" \
       org.opencontainers.image.source=https://github.com/openim-sigs/openim-base-image \
       org.opencontainers.image.description="OpenIM Sigs Image" \
       org.opencontainers.image.licenses="MIT"
