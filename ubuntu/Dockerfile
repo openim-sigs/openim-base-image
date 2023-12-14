@@ -58,7 +58,7 @@ RUN /openim/tools/get_os.sh > ~/os && \
 
 # Set directory to map logs, config files, scripts, and SDK
 VOLUME ["/openim", \
-        "/openim/openim-server/logs", "/openim/openim-server/config", "/openim/openim-server/scripts", "/openim/openim-server/deploymentes", "/openim/openim-server/_output/logs", \
+        "/openim/openim-server/logs", "/openim/openim-server/config", "/openim/openim-server/scripts", "/openim/openim-server/deployments", "/openim/openim-server/_output/logs", \
         "/openim/openim-chat/logs", "/openim/openim-chat/config", "/openim/openim-chat/scripts","/openim/openim-chat/_output/logs", \
         "/openim/openkf/logs", "/openim/openkf/config", "/openim/openkf/scripts", "/openim/openkf/_output/bin"]
 
