@@ -39,6 +39,17 @@ jobs:
   CLAAssistant:
     runs-on: ubuntu-latest
     steps:
+      - name: Check BOT_GITHUB_TOKEN validity
+        run: |
+          echo "Attempting API call to check token validity..."
+          curl -H "Authorization: token ${{ secrets.BOT_GITHUB_TOKEN }}" https://api.github.com/user
+          if [ $? -ne 0 ]; then
+            echo "Error: Invalid BOT_GITHUB_TOKEN. Please ensure the token is valid and has the required permissions."
+            exit 1
+          fi
+        env:
+          BOT_GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+
       - name: "CLA Assistant"
         if: (github.event.comment.body == 'recheck' || github.event.comment.body == 'I have read the CLA Document and I hereby sign the CLA') || github.event_name == 'pull_request_target'
         uses: contributor-assistant/github-action@v2.3.0
