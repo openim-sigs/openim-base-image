@@ -1,0 +1,20 @@
+name: Main workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up GitHub token
+      run: echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+    - name: Run dessant/lock-threads
+      uses: dessant/lock-threads@v4
+      with:
+        github-token: ${{ env.GH_TOKEN }}
