@@ -1,0 +1,12 @@
+name: Main Workflow
+
+on: [push, pull_request]
+
+jobs:
+  lock-threads:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Lock threads
+      uses: dessant/lock-threads@v4
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
