@@ -39,7 +39,20 @@ jobs:
   CLAAssistant:
     runs-on: ubuntu-latest
     steps:
-      - name: "CLA Assistant"
+      - name: Check secrets
+  run: |
+    if [[ -z "${{ secrets.BOT_GITHUB_TOKEN }}" ]]; then
+      echo "BOT_GITHUB_TOKEN is not set"
+    else
+      echo "BOT_GITHUB_TOKEN is set"
+    fi
+    if [[ -z "${{ secrets.REDBOT_GITHUB_TOKEN }}" ]]; then
+      echo "REDBOT_GITHUB_TOKEN is not set"
+    else
+      echo "REDBOT_GITHUB_TOKEN is set"
+    fi
+
+- name: "CLA Assistant"
         if: (github.event.comment.body == 'recheck' || github.event.comment.body == 'I have read the CLA Document and I hereby sign the CLA') || github.event_name == 'pull_request_target'
         uses: contributor-assistant/github-action@v2.3.0
         env:
