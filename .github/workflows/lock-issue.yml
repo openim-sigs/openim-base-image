@@ -31,6 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: dessant/lock-threads@v4
+        if: secrets.BOT_GITHUB_TOKEN != ''
         with:
           github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
           issue-inactive-days: '365'
