@@ -64,5 +64,5 @@ VOLUME ["/openim", \
 
 WORKDIR /openim
 
-ONBUILD RUN OS=$(get_os) && \
+ONBUILD RUN export OS=$(get_os) && \
             ARCH=$(get_arch)
