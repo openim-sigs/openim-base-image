@@ -23,6 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
+      actions: write
     steps:
       - name: Add comment
         uses: peter-evans/create-or-update-comment@v3
