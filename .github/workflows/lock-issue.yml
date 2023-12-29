@@ -32,6 +32,13 @@ jobs:
     steps:
       - uses: dessant/lock-threads@v4
         with:
+          # To set the 'BOT_GITHUB_TOKEN' secret, follow these steps:
+          # 1. Navigate to the repository's settings.
+          # 2. Click on the 'Secrets' tab.
+          # 3. Click on the 'New repository secret' button.
+          # 4. Enter 'BOT_GITHUB_TOKEN' as the name of the secret.
+          # 5. Enter the GitHub token as the value of the secret.
+          # 6. Click on the 'Add secret' button to save the secret.
           github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
           issue-inactive-days: '365'
           exclude-issue-created-before: ''
