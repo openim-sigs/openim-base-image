@@ -30,9 +30,13 @@ jobs:
   action:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: dessant/lock-threads@v4
         with:
-          github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           issue-inactive-days: '365'
           exclude-issue-created-before: ''
           exclude-issue-created-after: ''
