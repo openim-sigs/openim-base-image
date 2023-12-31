@@ -32,6 +32,9 @@ jobs:
     steps:
       - uses: dessant/lock-threads@v4
         with:
+          # Ensure that the 'BOT_GITHUB_TOKEN' has the correct permissions or set it to the correct value
+          # Check the 'dessant/lock-threads@v4' action documentation for any known issues or additional token requirements
+          # If the issue persists, open an issue in the repository of the 'dessant/lock-threads@v4' action
           github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
           issue-inactive-days: '365'
           exclude-issue-created-before: ''
