@@ -1,0 +1,14 @@
+name: DCO Check
+
+on: [pull_request]
+
+jobs:
+  DCO:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+    - name: Run DCO check
+      uses: contributor-assistant/github-action@v2.3.0
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
