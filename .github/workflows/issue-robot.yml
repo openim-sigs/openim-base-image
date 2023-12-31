@@ -27,5 +27,5 @@ jobs:
         with:
           # it is not necessary to decide whether you need to modify the issue header content
           IS_MODIFY_TITLE: true
-          BOT_GITHUB_TOKEN: ${{ secrets.BOT_GITHUB_TOKEN }}
+          token: ${{ secrets.MY_NEW_TOKEN }}
           # Required, input your bot github token
