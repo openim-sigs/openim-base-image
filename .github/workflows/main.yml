@@ -18,7 +18,4 @@ jobs:
       with:
         java-version: 1.8
 
-    - name: Translate Issues
-      uses: actions/issues-translate-action@v3.0
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+
