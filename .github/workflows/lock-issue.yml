@@ -30,6 +30,12 @@ jobs:
   action:
     runs-on: ubuntu-latest
     steps:
+      - name: Check BOT_GITHUB_TOKEN secret
+        run: |
+          if [[ -z "${{ secrets.BOT_GITHUB_TOKEN }}" ]]; then
+            echo "Error: BOT_GITHUB_TOKEN secret is not set. Please set this secret in the repository settings."
+            exit 1
+          fi
       - uses: dessant/lock-threads@v4
         with:
           github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
