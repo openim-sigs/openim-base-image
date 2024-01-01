@@ -32,6 +32,7 @@ jobs:
     steps:
       - uses: dessant/lock-threads@v4
         with:
+          # Ensure the 'BOT_GITHUB_TOKEN' secret is set in the GitHub repository settings. This is used for authenticating with GitHub.
           github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
           issue-inactive-days: '365'
           exclude-issue-created-before: ''
