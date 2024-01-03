@@ -1,0 +1,15 @@
+name: "Issue Translation Workflow"
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Translate Issue Comment"
+        uses: usthe/issues-translate-action@v2.7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          source: auto
+          target: en
