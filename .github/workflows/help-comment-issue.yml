@@ -24,6 +24,20 @@ jobs:
     permissions:
       issues: write
     steps:
+      - name: Check BOT_GITHUB_TOKEN secret
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const { octokit } = github;
+            const { repo } = context;
+            try {
+              await octokit.rest.repos.get({
+                owner: repo.owner,
+                repo: repo.repo,
+              });
+            } catch (error) {
+              core.setFailed('BOT_GITHUB_TOKEN secret is not set or invalid.');
+            }
       - name: Add comment
         uses: peter-evans/create-or-update-comment@v3
         with:
